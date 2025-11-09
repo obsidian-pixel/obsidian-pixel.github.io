@@ -39,19 +39,13 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:url"
-      content="https://obsidian-pixel.github.io/"
-    />
+    <meta name="twitter:url" content="https://obsidian-pixel.github.io/" />
     <meta name="twitter:title" content="RAIDUIX Vault v1.0" />
     <meta
       name="twitter:description"
       content="Explore AI-powered open-source builds from RAIDUIX. Steal, improve, and evolve."
     />
-    <meta
-      name="twitter:image"
-      content="https://obsidian-pixel.github.io/"
-    />
+    <meta name="twitter:image" content="https://obsidian-pixel.github.io/" />
     <meta name="twitter:creator" content="@raiduix" />
 
     <!-- Additional SEO & Performance -->
@@ -82,9 +76,19 @@
         </p>
       </header>
 
+      <!-- Search Component -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="> search builds, agents, or code..."
+        />
+        <button id="searchBtn">></button>
+      </div>
+
       <section class="builds">
-                <!-- Beast mode gpt-->
-<div class="card">
+        <!-- Beast mode gpt-->
+        <div class="card">
           <div class="card-img">
             <iframe
               src="https://obsidian-pixel.github.io/beastmodegpt/"
@@ -162,5 +166,7 @@
         </div>
       </footer>
     </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
