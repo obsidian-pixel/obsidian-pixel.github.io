@@ -317,34 +317,34 @@ footer {
 }
 
 /* Chrome, Safari, Edge, Opera */
-.custom-scrollbar::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 4px;
   scrollbar-color: #00eeff;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: #000000;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #00eeff;
   border-radius: 20px;
   box-shadow: 0 0 5px #16a085, 0 0 10px #16a085;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #00abd6;
   box-shadow: 0 0 10px #16a085, 0 0 20px #16a085;
 }
 
-.custom-scrollbar::-webkit-scrollbar-button {
+*::-webkit-scrollbar-button {
   background: #888888;
   height: 12px;
   width: 12px;
 }
 
 /* Firefox */
-.custom-scrollbar {
+* {
   scrollbar-width: thin;
   scrollbar-color: #00eeff #000000;
 }
