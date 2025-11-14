@@ -68,7 +68,7 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container custom-scrollbar">
       <header>
         <div class="logo">> Obsidian-Pixel's Vault</div>
         <p class="tagline">
@@ -257,33 +257,63 @@
             </div>
           </div>
         </div>
-      </section>
 
-      <footer>
-        <p class="footer-tagline">> Steal. Improve. Tag @RAIDUIX.</p>
-        <div class="social-links">
-          <a href="https://x.com/raiduix" target="_blank" rel="noopener">[X]</a>
-          <a
-            href="https://github.com/obsidian-pixel"
-            target="_blank"
-            rel="noopener"
-            >[GitHub]</a
-          >
+        <!-- scroll bar template-->
+        <div class="card">
+          <div class="card-img">
+            <iframe
+              src="https://claude.site/public/artifacts/9a803469-df3c-4dc6-abff-df28509d7680/embed"
+              title="Claude Artifact"
+              width="100%"
+              height="600"
+              frameborder="0"
+              allow="clipboard-write"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Custom Scrollbar Templates</h3>
+            <p class="card-meta">
+              Interactive gallery featuring 6 scrollbar styles with copy-paste
+              CSS code for Chrome, Safari, Edge, and Firefox.
+            </p>
+            <div class="card-links">
+              <a
+                href="https://claude.ai/public/artifacts/9a803469-df3c-4dc6-abff-df28509d7680"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >[Live]</a
+              >
+              <a
+                href="https://claude.ai/public/artifacts/9a803469-df3c-4dc6-abff-df28509d7680"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >[Steal]</a
+              >
+            </div>
+          </div>
         </div>
-      </footer>
+      </section>
     </div>
+    <footer>
+      <p class="footer-tagline">> Steal. Improve. Tag @RAIDUIX.</p>
+      <div class="social-links">
+        <a href="https://x.com/raiduix" target="_blank" rel="noopener">[X]</a>
+        <a
+          href="https://github.com/obsidian-pixel"
+          target="_blank"
+          rel="noopener"
+          >[GitHub]</a
+        >
+      </div>
+    </footer>
 
-    <!-- Scroll controls -->
-    <div class="scroll-controls" aria-hidden="false">
-      <button id="scrollTopBtn" class="scroll-btn" aria-label="Scroll to top">
-        ▲
-      </button>
-      <button
-        id="scrollBottomBtn"
-        class="scroll-btn"
-        aria-label="Scroll to bottom"
-      >
-        ▼
+    <div class="scroll-controls">
+      <button id="scrollBtn" class="hidden transition-transform duration-300">
+        ↓
+        <!-- or use an SVG arrow pointing down -->
       </button>
     </div>
 

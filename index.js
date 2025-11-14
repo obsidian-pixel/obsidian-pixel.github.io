@@ -40,17 +40,14 @@ searchInput.addEventListener("keyup", (e) => {
 // optional: live search while typing
 searchInput.addEventListener("input", contextSearch);
 
-// index.js (or append to your existing index.js)
-// Smooth scroll to top and bottom with visibility toggles.
+// Single rotating scroll button
+const scrollBtn = document.getElementById("scrollBtn");
 
-const scrollTopBtn = document.getElementById("scrollTopBtn");
-const scrollBottomBtn = document.getElementById("scrollBottomBtn");
+if (scrollBtn) {
+  const SHOW_AFTER = 200; // px scrolled down before showing button
+  const ROTATE_AT = 0.5; // rotate at 50% scroll
 
-if (scrollTopBtn && scrollBottomBtn) {
-  const SHOW_AFTER = 200; // px scrolled down before showing top button
-  const HIDE_NEAR_BOTTOM = 120; // px from bottom to hide bottom button
-
-  function updateButtons() {
+  function updateButton() {
     const scrolled = window.scrollY || document.documentElement.scrollTop;
     const docHeight = Math.max(
       document.body.scrollHeight,
@@ -61,24 +58,25 @@ if (scrollTopBtn && scrollBottomBtn) {
       document.documentElement.clientHeight
     );
     const winHeight = window.innerHeight;
-    const distanceToBottom = docHeight - (scrolled + winHeight);
+    const maxScroll = docHeight - winHeight;
+    const scrollPercent = maxScroll > 0 ? scrolled / maxScroll : 0;
 
-    // Show top button after user scrolls down a bit
+    // Show button after scrolling down a bit
     if (scrolled > SHOW_AFTER) {
-      scrollTopBtn.classList.remove("hidden");
+      scrollBtn.classList.remove("hidden");
     } else {
-      scrollTopBtn.classList.add("hidden");
+      scrollBtn.classList.add("hidden");
     }
 
-    // Show bottom button unless near the bottom
-    if (distanceToBottom > HIDE_NEAR_BOTTOM) {
-      scrollBottomBtn.classList.remove("hidden");
+    // Rotate button at 50% scroll
+    if (scrollPercent >= ROTATE_AT) {
+      scrollBtn.classList.add("rotate-180");
     } else {
-      scrollBottomBtn.classList.add("hidden");
+      scrollBtn.classList.remove("rotate-180");
     }
   }
 
-  // Smooth scroll helpers
+  // Smooth scroll helper
   function smoothScrollTo(y, duration = 450) {
     const start = window.scrollY || document.documentElement.scrollTop;
     const change = y - start;
@@ -98,11 +96,8 @@ if (scrollTopBtn && scrollBottomBtn) {
     requestAnimationFrame(animate);
   }
 
-  scrollTopBtn.addEventListener("click", () => {
-    smoothScrollTo(0);
-  });
-
-  scrollBottomBtn.addEventListener("click", () => {
+  scrollBtn.addEventListener("click", () => {
+    const scrolled = window.scrollY || document.documentElement.scrollTop;
     const docHeight = Math.max(
       document.body.scrollHeight,
       document.documentElement.scrollHeight,
@@ -111,17 +106,24 @@ if (scrollTopBtn && scrollBottomBtn) {
       document.body.clientHeight,
       document.documentElement.clientHeight
     );
-    smoothScrollTo(docHeight, 450);
+    const winHeight = window.innerHeight;
+    const maxScroll = docHeight - winHeight;
+    const scrollPercent = maxScroll > 0 ? scrolled / maxScroll : 0;
+
+    // Scroll to top if in bottom half, scroll to bottom if in top half
+    if (scrollPercent >= ROTATE_AT) {
+      smoothScrollTo(0);
+    } else {
+      smoothScrollTo(docHeight);
+    }
   });
 
-  // initial state and listeners
-  updateButtons();
-  window.addEventListener(
-    "scroll",
-    () => requestAnimationFrame(updateButtons),
-    { passive: true }
-  );
-  window.addEventListener("resize", () => requestAnimationFrame(updateButtons));
+  // Initial state and listeners
+  updateButton();
+  window.addEventListener("scroll", () => requestAnimationFrame(updateButton), {
+    passive: true,
+  });
+  window.addEventListener("resize", () => requestAnimationFrame(updateButton));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
