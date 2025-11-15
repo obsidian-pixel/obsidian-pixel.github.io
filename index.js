@@ -129,3 +129,57 @@ if (scrollBtn) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// RAIDUIX Sidebar Plugin - sidebar.js
+
+(function () {
+  const sidebar = document.getElementById("sidebar");
+  const pinBtn = document.getElementById("pinBtn");
+  let isPinned = false;
+  let expandTimeout;
+
+  // Hover to expand
+  sidebar.addEventListener("mouseenter", () => {
+    if (!isPinned) {
+      clearTimeout(expandTimeout);
+      sidebar.classList.add("expanded");
+    }
+  });
+
+  // Collapse when mouse leaves (unless pinned)
+  sidebar.addEventListener("mouseleave", () => {
+    if (!isPinned) {
+      expandTimeout = setTimeout(() => {
+        sidebar.classList.remove("expanded");
+      }, 300);
+    }
+  });
+
+  // Pin/Unpin functionality
+  pinBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    isPinned = !isPinned;
+
+    if (isPinned) {
+      sidebar.classList.add("pinned");
+      pinBtn.classList.add("pinned");
+    } else {
+      sidebar.classList.remove("pinned");
+      pinBtn.classList.remove("pinned");
+    }
+  });
+
+  // Active link handling
+  const links = document.querySelectorAll(".sidebar-link");
+  links.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Don't prevent default for external links
+      if (!this.hasAttribute("target")) {
+        e.preventDefault();
+      }
+
+      links.forEach((l) => l.classList.remove("active"));
+      this.classList.add("active");
+    });
+  });
+})();
