@@ -1,0 +1,60 @@
+:root {
+  --primary-color: #00ffff;
+  --secondary-color: #6c757d;
+  --background-color: #0b0e10;
+  --text-color: #e6e6e6;
+  --spacing-unit: 8px;
+  --font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --accent-brass: #b8860b;
+  --accent-copper: #c97200;
+  --accent-emerald: #00b894;
+  --radius: 12px;
+  --shadow-soft: 0 12px 24px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 24px rgba(0,255,255,0.35);
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+  --glass-blur: 12px;
+  --page-gradient-start: #0b0e10;
+  --page-gradient-end: #12171b;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+html {
+  background: linear-gradient(180deg, var(--page-gradient-start), var(--page-gradient-end));
+  background-color: var(--page-gradient-start);
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--page-gradient-start), var(--page-gradient-end));
+  background-color: var(--page-gradient-start);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 3);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Dark/light theme hook */
+.theme-dark {
+  --background-color: #0b0e10;
+  --text-color: #e6e6e6;
+}
+
+.theme-light {
+  --background-color: #ffffff;
+  --text-color: #212529;
+}
