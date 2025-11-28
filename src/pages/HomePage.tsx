@@ -2,13 +2,18 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO/SEO';
 import { combineSchemas, organizationSchema, websiteSchema, softwareApplicationSchema } from '../components/SEO/schemas';
+import { createFAQSchema, defaultFAQs } from '../components/SEO/faq.schema';
+import { FAQ } from '../components/FAQ/FAQ';
 import styles from './home.module.css';
 
 export const HomePage: React.FC = () => {
+  const faqSchema = createFAQSchema(defaultFAQs);
+  
   const homeSchema = combineSchemas(
     organizationSchema,
     websiteSchema,
-    softwareApplicationSchema
+    softwareApplicationSchema,
+    faqSchema
   );
 
   return (
@@ -114,6 +119,9 @@ export const HomePage: React.FC = () => {
           </article>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ items={defaultFAQs} />
     </div>
   );
 };

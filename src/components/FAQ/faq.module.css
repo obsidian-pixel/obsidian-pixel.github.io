@@ -1,0 +1,138 @@
+.faqSection {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faqTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faqItem {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faqItem:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.faqItem.open {
+  border-color: var(--cyan);
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
+}
+
+.faqQuestion {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.2s ease;
+}
+
+.faqQuestion:hover {
+  color: var(--cyan);
+}
+
+.faqQuestion:focus {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+
+.questionText {
+  flex: 1;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: var(--cyan);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.3s ease;
+}
+
+.faqItem.open .faqAnswer {
+  max-height: 500px;
+  padding: 0 2rem 1.5rem;
+}
+
+.faqAnswer p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faqSection {
+    padding: 3rem 1rem;
+  }
+
+  .faqTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .faqQuestion {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .faqAnswer {
+    font-size: 0.9375rem;
+  }
+
+  .faqItem.open .faqAnswer {
+    padding: 0 1.5rem 1.25rem;
+  }
+}
+
+/* Animation for smooth opening */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faqItem.open .faqAnswer p {
+  animation: fadeIn 0.3s ease forwards;
+}
