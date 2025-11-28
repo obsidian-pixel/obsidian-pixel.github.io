@@ -1,10 +1,38 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO/SEO';
+import { combineSchemas, organizationSchema, websiteSchema, softwareApplicationSchema } from '../components/SEO/schemas';
 import styles from './home.module.css';
 
 export const HomePage: React.FC = () => {
+  const homeSchema = combineSchemas(
+    organizationSchema,
+    websiteSchema,
+    softwareApplicationSchema
+  );
+
   return (
     <div className={styles.page}>
+      <SEO
+        title="RAIDUIX Vault — Advanced AI Prompt Engineering Library"
+        description="Access 500+ premium AI prompts, autonomous agent frameworks, and cognitive architectures designed for next-generation AI development. Expert prompt engineering for GPT-4, Claude, and LLMs."
+        keywords={[
+          'AI prompts',
+          'prompt engineering',
+          'LLM prompts',
+          'GPT-4 prompts',
+          'Claude prompts',
+          'AI development tools',
+          'autonomous agents',
+          'cognitive architectures',
+          'prompt library',
+          'AI templates'
+        ]}
+        path="/"
+        type="website"
+        schema={homeSchema}
+      />
+      
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
@@ -31,7 +59,7 @@ export const HomePage: React.FC = () => {
 
       {/* Social Proof */}
       <section className={styles.socialProof}>
-        <h3 className={styles.proofTitle}>Powering Next-Gen Development</h3>
+        <h2 className={styles.proofTitle}>Powering Next-Gen Development</h2>
         <div className={styles.statsGrid}>
           <div className={styles.statItem}>
             <span className={styles.statValue}>500+</span>
@@ -57,7 +85,7 @@ export const HomePage: React.FC = () => {
           </p>
         </div>
         <div className={styles.featureGrid}>
-          <div className={styles.featureCard}>
+          <article className={styles.featureCard}>
             <div className={styles.featureIcon}>
               <i className="fi-rr-brain"></i>
             </div>
@@ -65,8 +93,8 @@ export const HomePage: React.FC = () => {
             <p className={styles.featureDesc}>
               Chain-of-Thought, Few-Shot learning, and cognitive frameworks that unlock AI's full potential.
             </p>
-          </div>
-          <div className={styles.featureCard}>
+          </article>
+          <article className={styles.featureCard}>
             <div className={styles.featureIcon}>
               <i className="fi-rr-shield-check"></i>
             </div>
@@ -74,8 +102,8 @@ export const HomePage: React.FC = () => {
             <p className={styles.featureDesc}>
               Prompt injection defenses, input validation, and safety protocols built into every template.
             </p>
-          </div>
-          <div className={styles.featureCard}>
+          </article>
+          <article className={styles.featureCard}>
             <div className={styles.featureIcon}>
               <i className="fi-rr-rocket-lunch"></i>
             </div>
@@ -83,7 +111,7 @@ export const HomePage: React.FC = () => {
             <p className={styles.featureDesc}>
               Copy-paste ready prompts with detailed context, examples, and output formatting.
             </p>
-          </div>
+          </article>
         </div>
       </section>
     </div>

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SEO } from '../components/SEO/SEO';
+import { combineSchemas, createBreadcrumbSchema, createItemListSchema } from '../components/SEO/schemas';
 import styles from './page.module.css';
 import { PromptCard } from '../components/PromptCard/PromptCard';
 import { SearchBar } from '../components/SearchBar/Search-Bar';
@@ -86,8 +88,41 @@ export const PromptLibraryPage: React.FC = () => {
         return () => observer.disconnect();
     }, []);
 
+    const breadcrumbSchema = createBreadcrumbSchema([
+        { name: 'Home', url: '/' },
+        { name: 'Prompt Library', url: '/prompts' }
+    ]);
+
+    const itemListSchema = createItemListSchema(
+        'AI Prompt Library',
+        'Curated collection of 500+ premium AI prompts for GPT-4, Claude, and LLM development',
+        PROMPTS_DATA.map(p => p.title)
+    );
+
+    const promptLibrarySchema = combineSchemas(breadcrumbSchema, itemListSchema);
+
     return (
         <div className={styles.page}>
+            <SEO
+                title="Premium AI Prompt Library | 500+ Expert Prompts"
+                description="Browse our comprehensive library of production-ready AI prompts. Chain-of-thought, few-shot learning, and advanced prompt engineering templates for GPT-4, Claude, and LLMs."
+                keywords={[
+                    'AI prompt library',
+                    'prompt templates',
+                    'prompt engineering',
+                    'AI prompts collection',
+                    'GPT-4 prompts',
+                    'Claude prompts',
+                    'LLM prompts',
+                    'chain of thought prompts',
+                    'few shot learning',
+                    'prompt examples'
+                ]}
+                path="/prompts"
+                type="website"
+                schema={promptLibrarySchema}
+            />
+            
             <section className={styles.section}>
                 <h1 className={styles.pageTitle}>Prompt Library</h1>
                 <p className={styles.pageDescription}>

@@ -1,0 +1,27 @@
+{
+  "name": "RAIDUIX Vault",
+  "short_name": "RAIDUIX",
+  "description": "Advanced AI Prompt Engineering Library - Access 500+ premium prompts, autonomous agent frameworks, and cognitive architectures for next-generation AI development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00ffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300ffff'>&gt;&gt;</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%2300ffff'>&gt;&gt;</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["development", "productivity", "education"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
