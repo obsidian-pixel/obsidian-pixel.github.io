@@ -10,8 +10,8 @@ const SidebarComponent: React.FC = memo(function SidebarComponent() {
   const toggleMenu = useCallback(() => {
     setOpen((prev: boolean) => !prev);
   }, []);
-  const onEnter = useCallback(() => {}, []);
-  const onLeave = useCallback(() => {}, []);
+  const onEnter = useCallback(() => { }, []);
+  const onLeave = useCallback(() => { }, []);
 
   return (
     <nav
@@ -35,47 +35,27 @@ const SidebarComponent: React.FC = memo(function SidebarComponent() {
         </button>
       </div>
 
-      <div className={styles.section}>
-        <div className={styles.title}>Navigation</div>
-        <a href="#home" className={styles.link} aria-current="page">
+      <div className={styles.mainNav}>
+        <a href="/" className={styles.link} aria-current="page" title="Home">
           <i aria-hidden="true" className={`fi-rr-home ${styles.icon}`}></i>
           <span className={styles.linkText}>Home</span>
         </a>
-        <a href="#projects" className={styles.link}>
+        <a href="/projects" className={styles.link} title="Projects">
           <i aria-hidden="true" className={`fi-rr-apps ${styles.icon}`}></i>
           <span className={styles.linkText}>Projects</span>
         </a>
-        <a href="#about" className={styles.link}>
-          <i aria-hidden="true" className={`fi-rr-info ${styles.icon}`}></i>
-          <span className={styles.linkText}>About</span>
+        <a href="/prompts" className={styles.link} title="Prompt Library">
+          <i aria-hidden="true" className={`fi-rr-document ${styles.icon}`}></i>
+          <span className={styles.linkText}>Prompt Library</span>
         </a>
       </div>
 
-      <div className={styles.section}>
-        <div className={styles.title}>Tools</div>
-        <a href="#beastmode" className={styles.link}>
-          <i aria-hidden="true" className={`fi-rr-code ${styles.icon}`}></i>
-          <span className={styles.linkText}>Beast Mode GPT</span>
+      <div className={styles.socialLinks}>
+        <a href="https://x.com/raiduix" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+          <i aria-hidden="true" className="fi-brands-x-twitter"></i>
         </a>
-        <a href="#colorpicker" className={styles.link}>
-          <i aria-hidden="true" className={`fi-rr-palette ${styles.icon}`}></i>
-          <span className={styles.linkText}>Color Picker</span>
-        </a>
-        <a href="#icons" className={styles.link}>
-          <i aria-hidden="true" className={`fi-rr-picture ${styles.icon}`}></i>
-          <span className={styles.linkText}>Icon Generator</span>
-        </a>
-      </div>
-
-      <div className={styles.section}>
-        <div className={styles.title}>Connect</div>
-        <a href="https://x.com/raiduix" className={styles.link} target="_blank" rel="noopener noreferrer">
-          <i aria-hidden="true" className={`fi-brands-twitter ${styles.icon}`}></i>
-          <span className={styles.linkText}>Twitter/X</span>
-        </a>
-        <a href="https://github.com/obsidian-pixel" className={styles.link} target="_blank" rel="noopener noreferrer">
-          <i aria-hidden="true" className={`fi-brands-github ${styles.icon}`}></i>
-          <span className={styles.linkText}>GitHub</span>
+        <a href="https://github.com/obsidian-pixel" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="GitHub">
+          <i aria-hidden="true" className="fi-brands-github"></i>
         </a>
       </div>
     </nav>

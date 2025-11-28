@@ -5,6 +5,8 @@
   background: var(--glass-bg);
   -webkit-backdrop-filter: blur(var(--glass-blur));
   backdrop-filter: blur(var(--glass-blur));
+  position: relative;
+  z-index: 9999999999999;
 }
 .tagline { margin: 0 0 calc(var(--spacing-unit) * 2); color: var(--secondary-color); }
 .links a { margin-right: calc(var(--spacing-unit) * 2); }

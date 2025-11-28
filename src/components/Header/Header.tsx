@@ -13,7 +13,7 @@ export const Header: React.FC = memo(function HeaderComponent() {
           I build awesome things with AI. You steal it. We both win.
         </p>
         <div className={styles.actions}>
-          <a className={styles.cta} href="#builds">Explore Builds</a>
+          <a className={styles.cta} href="/projects">Explore Projects</a>
           <div className={styles.links} aria-label="Social links">
             <span style={{ paddingRight: '12px' }}>Follow me:</span>
             <a href="https://x.com/raiduix" target="_blank" rel="noopener noreferrer">[X]</a>

@@ -1,6 +1,6 @@
 .app {
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 64px 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
@@ -10,17 +10,15 @@
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden;
   position: relative;
+  z-index: 1;
 }
 
-.app:has(.sidebarArea nav[data-expanded]),
-.app:has(.sidebarArea nav[data-pinned]) {
-  grid-template-columns: 280px 1fr;
-}
 
 .headerArea {
   grid-area: header;
+  position: relative;
+  z-index: 999;
 }
 
 .sidebarArea {
@@ -30,23 +28,14 @@
 .content {
   grid-area: content;
   padding-bottom: calc(var(--spacing-unit) * 8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(350px, 1fr));
-  gap: calc(var(--spacing-unit) * 3);
-  justify-content: center;
-  justify-items: center;
-  align-content: start;
-  grid-auto-flow: dense;
+  width: 100%;
+  overflow: visible;
 }
 
 .footerArea {
   grid-area: footer;
+  position: relative;
+  z-index: 999;
 }
 
 @media (max-width: 768px) {
@@ -59,6 +48,7 @@
       "content"
       "footer";
   }
+
   .grid {
     grid-template-columns: 1fr;
   }

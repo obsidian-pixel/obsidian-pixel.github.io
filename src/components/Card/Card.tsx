@@ -11,16 +11,84 @@ export type CardProps = {
   stealUrl: string;
 };
 
-const { memo, useState } = React;
+const { memo, useState, useRef, useEffect } = React;
 export const Card: React.FC<CardProps> = memo(function CardComponent(props: CardProps) {
   const { title, meta, description, iframeSrc, liveUrl, stealUrl } = props;
   const [expanded, setExpanded] = useState<boolean>(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [shadowStyle, setShadowStyle] = useState<string>('');
   const iframeId = React.useMemo(() => `card-iframe-${title.replace(/\s+/g, '-').toLowerCase()}`, [title]);
   const toggleExpand = () => setExpanded((v) => !v);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+    let currentMouseX = 0;
+    let currentMouseY = 0;
+    let targetShadowX = 0;
+    let targetShadowY = 0;
+    let currentShadowX = 0;
+    let currentShadowY = 0;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetMouseX = e.pageX;
+      targetMouseY = e.pageY;
+    };
+
+    const updateShadow = () => {
+      if (!cardRef.current) {
+        animationFrameId = requestAnimationFrame(updateShadow);
+        return;
+      }
+
+      // Smooth mouse position
+      currentMouseX += (targetMouseX - currentMouseX) * 0.1;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.1;
+
+      const rect = cardRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Calculate vector from card center to cursor
+      const dx = currentMouseX - centerX;
+      const dy = currentMouseY - centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Normalize direction and calculate shadow offset (opposite direction)
+      const maxDistance = 600;
+      const influence = Math.min(distance / maxDistance, 1);
+      const shadowStrength = 8 + influence * 12;
+      
+      targetShadowX = -dx * (shadowStrength / distance) * (influence * 0.8);
+      targetShadowY = -dy * (shadowStrength / distance) * (influence * 0.8);
+      
+      // Smooth shadow transition
+      currentShadowX += (targetShadowX - currentShadowX) * 0.15;
+      currentShadowY += (targetShadowY - currentShadowY) * 0.15;
+      
+      // Dynamic blur and spread based on distance
+      const blur = 16 + influence * 12;
+      const spread = 4 + influence * 6;
+      const opacity = 0.15 + influence * 0.1;
+      
+      setShadowStyle(`${currentShadowX}px ${currentShadowY}px ${blur}px ${spread}px rgba(0,0,0,${opacity})`);
+      
+      animationFrameId = requestAnimationFrame(updateShadow);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    animationFrameId = requestAnimationFrame(updateShadow);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
   return (
     <>
       {expanded ? <div className={styles.backdrop} onClick={toggleExpand} aria-hidden="true" /> : null}
-      <article className={`${styles.card} ${expanded ? styles.expanded : ''}`} role={expanded ? 'dialog' : undefined} aria-modal={expanded ? 'true' : undefined} aria-labelledby={expanded ? `${iframeId}-label` : undefined}>
+      <article ref={cardRef} className={`${styles.card} ${expanded ? styles.expanded : ''}`} role={expanded ? 'dialog' : undefined} aria-modal={expanded ? 'true' : undefined} aria-labelledby={expanded ? `${iframeId}-label` : undefined} style={{ boxShadow: shadowStyle }}>
         <div className={styles.img}>
           <iframe
             id={iframeId}
