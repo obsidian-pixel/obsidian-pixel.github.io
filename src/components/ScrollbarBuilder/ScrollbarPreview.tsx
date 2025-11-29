@@ -38,26 +38,26 @@ export const ScrollbarPreview: React.FC<ScrollbarPreviewProps> = ({ theme }) => 
   return (
     <div
       style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
+        width: '100%',
         height: '100%',
-        padding: '2rem',
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
-      <style>{styles}</style>
+      <style key={JSON.stringify(theme)}>{styles}</style>
 
       {/* Mock Browser Window */}
       <div
         style={{
           width: '100%',
-          maxWidth: '900px',
-          height: '700px',
+          maxWidth: '600px',
+          height: '75vh',
+          maxHeight: '600px',
+          minHeight: '450px',
           background: '#0f0f0f',
-          borderRadius: '16px',
-          boxShadow: '0 50px 100px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+          borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -258,7 +258,7 @@ export const ScrollbarPreview: React.FC<ScrollbarPreviewProps> = ({ theme }) => 
                     color: '#a5b3ce',
                   }}
                 >
-                  <code>console.log("Scroll to explore more content...");</code>
+                  <code>{`console.log("Scroll to explore more content...");`}</code>
                 </div>
               </div>
             ))}

@@ -10,18 +10,20 @@ export const ScrollbarBuilderPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.controlsPanel}>
+      <div className={styles.controlsColumn}>
         <div className={styles.header}>
           <h1 className={styles.title}>Scrollbar Architect</h1>
-          <p className={styles.subtitle}>Design advanced scrollbars for any framework</p>
+          <p className={styles.subtitle}>Design advanced scrollbars</p>
         </div>
-
         <ScrollbarControls theme={theme} onChange={setTheme} />
-        <CodeExportPanel theme={theme} />
       </div>
 
-      <div className={styles.previewPanel}>
+      <div className={styles.previewColumn}>
         <ScrollbarPreview theme={theme} />
+      </div>
+
+      <div className={styles.codeColumn}>
+        <CodeExportPanel theme={theme} />
       </div>
     </div>
   );

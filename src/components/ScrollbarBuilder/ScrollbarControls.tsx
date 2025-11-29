@@ -69,6 +69,41 @@ export const ScrollbarControls: React.FC<ScrollbarControlsProps> = ({ theme, onC
         </div>
       </div>
 
+      {/* Dimensions */}
+      <div className={styles.section}>
+        <h3 className={styles.sectionTitle}>Dimensions</h3>
+        <div className={styles.controlGroup}>
+          <div>
+            <label htmlFor="scrollbar-width" className={styles.label}>
+              Width ({theme.width}px)
+            </label>
+            <input
+              id="scrollbar-width"
+              type="range"
+              min="4"
+              max="24"
+              value={theme.width}
+              onChange={(e) => onChange({ ...theme, width: Number(e.target.value) })}
+              className={styles.rangeInput}
+            />
+          </div>
+          <div>
+            <label htmlFor="border-radius" className={styles.label}>
+              Border Radius ({theme.borderRadius}px)
+            </label>
+            <input
+              id="border-radius"
+              type="range"
+              min="0"
+              max="20"
+              value={theme.borderRadius}
+              onChange={(e) => onChange({ ...theme, borderRadius: Number(e.target.value) })}
+              className={styles.rangeInput}
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Track */}
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Track</h3>

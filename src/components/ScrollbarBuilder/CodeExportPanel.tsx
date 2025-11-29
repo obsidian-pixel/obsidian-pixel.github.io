@@ -6,7 +6,7 @@ interface CodeExportPanelProps {
   theme: ScrollbarTheme;
 }
 
-type ExportFormat = 'css' | 'tailwind' | 'scss';
+type ExportFormat = 'css' | 'tailwind' | 'scss' | 'styled' | 'js';
 
 export const CodeExportPanel: React.FC<CodeExportPanelProps> = ({ theme }) => {
   const [format, setFormat] = useState<ExportFormat>('css');
@@ -94,6 +94,57 @@ export const CodeExportPanel: React.FC<CodeExportPanelProps> = ({ theme }) => {
 }`;
   };
 
+  const generateStyledComponents = () => {
+    return `import styled from 'styled-components';
+
+export const CustomScrollbar = styled.div\`
+  &::-webkit-scrollbar {
+    width: ${theme.width}px;
+    height: ${theme.width}px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${theme.track.background};
+    border-radius: ${theme.borderRadius}px;
+    box-shadow: ${theme.track.shadow};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${getThumbBackground()};
+    border-radius: ${theme.borderRadius}px;
+    border: ${theme.thumb.borderWidth}px solid ${theme.thumb.border};
+
+    &:hover {
+      background: ${theme.thumb.hoverBackground};
+    }
+  }
+\`;`;
+  };
+
+  const generateVanillaJS = () => {
+    return `const style = document.createElement('style');
+style.textContent = \`
+  ::-webkit-scrollbar {
+    width: ${theme.width}px;
+    height: ${theme.width}px;
+  }
+  ::-webkit-scrollbar-track {
+    background: ${theme.track.background};
+    border-radius: ${theme.borderRadius}px;
+    box-shadow: ${theme.track.shadow};
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${getThumbBackground()};
+    border-radius: ${theme.borderRadius}px;
+    border: ${theme.thumb.borderWidth}px solid ${theme.thumb.border};
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${theme.thumb.hoverBackground};
+  }
+\`;
+document.head.appendChild(style);`;
+  };
+
   const getCode = () => {
     switch (format) {
       case 'css':
@@ -102,6 +153,10 @@ export const CodeExportPanel: React.FC<CodeExportPanelProps> = ({ theme }) => {
         return generateTailwind();
       case 'scss':
         return generateSCSS();
+      case 'styled':
+        return generateStyledComponents();
+      case 'js':
+        return generateVanillaJS();
       default:
         return '';
     }
@@ -133,6 +188,18 @@ export const CodeExportPanel: React.FC<CodeExportPanelProps> = ({ theme }) => {
           onClick={() => setFormat('scss')}
         >
           SCSS
+        </button>
+        <button
+          className={`${styles.tab} ${format === 'styled' ? styles.activeTab : ''}`}
+          onClick={() => setFormat('styled')}
+        >
+          Styled Comp.
+        </button>
+        <button
+          className={`${styles.tab} ${format === 'js' ? styles.activeTab : ''}`}
+          onClick={() => setFormat('js')}
+        >
+          JS
         </button>
       </div>
       <pre className={styles.codeBlock}>{getCode()}</pre>

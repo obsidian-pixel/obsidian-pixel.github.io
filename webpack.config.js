@@ -10,13 +10,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     clean: true,
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
@@ -36,56 +36,65 @@ module.exports = {
               modules: {
                 auto: /\.module\.css$/,
                 namedExport: false,
-                localIdentName: '[local]__[hash:base64:5]'
+                localIdentName: '[local]__[hash:base64:5]',
               },
               importLoaders: 1,
-              sourceMap: true
-            }
-          }
+              sourceMap: true,
+            },
+          },
         ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
         type: 'asset/resource',
-      }
+      },
     ],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
     },
-    runtimeChunk: 'single'
+    runtimeChunk: 'single',
   },
   stats: {
-    errorDetails: true
+    errorDetails: true,
   },
   devServer: {
-    static: false,
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+      publicPath: '/',
+    },
     port: 3000,
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/$/, to: '/index.html' },
+        { from: /^\/[^.]*$/, to: '/index.html' },
+      ],
+      disableDotRule: false,
+    },
     compress: true,
     hot: true,
     headers: {
-      'Cache-Control': 'no-store'
-    }
+      'Cache-Control': 'no-store',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
       favicon: false,
       meta: {
-        'theme-color': '#00ffff'
+        'theme-color': '#00ffff',
       },
-      inject: 'body'
+      inject: 'body',
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, 'public'),
           to: path.resolve(__dirname, 'dist'),
-          noErrorOnMissing: true
-        }
-      ]
+          noErrorOnMissing: true,
+        },
+      ],
     }),
     ...(isProd
       ? [
@@ -93,6 +102,6 @@ module.exports = {
             filename: '[name].[contenthash].css',
           }),
         ]
-      : [])
-  ]
+      : []),
+  ],
 };
