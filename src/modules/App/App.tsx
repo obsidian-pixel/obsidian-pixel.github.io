@@ -1,53 +1,53 @@
 /// <reference types="react" />
 import * as React from 'react';
-const { useEffect } = React;
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import styles from './app.module.css';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
-import { ScrollButton } from '../../components/ScrollButton/Scroll-Button';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HomePage } from '../../pages/HomePage';
 import { ProjectsPage } from '../../pages/ProjectsPage';
 import { PromptLibraryPage } from '../../pages/PromptLibraryPage';
+import { Header } from '../../components/Header/Header';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import { Footer } from '../../components/Footer/Footer';
+import { ColorPickerApp } from '../../components/ColorPicker/ColorPickerApp';
+import styles from './app.module.css';
 
-const { lazy, Suspense } = React;
-const Sidebar = lazy(() => import('../../components/Sidebar/Sidebar'));
+const { memo } = React;
 
-const AppContent: React.FC = () => {
+const AppContent: React.FC = memo(function AppContent() {
   const location = useLocation();
-  const showHeader = location.pathname === '/';
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className={styles.app}>
-      {showHeader && (
+      <div className={styles.sidebarArea}>
+        <Sidebar />
+      </div>
+
+      {isHomePage && (
         <div className={styles.headerArea}>
           <Header />
         </div>
       )}
-      <div className={styles.sidebarArea}>
-        <Suspense fallback={<div>Loading sidebar...</div>}>
-          <Sidebar />
-        </Suspense>
-      </div>
-      <div className={styles.content}>
+
+      <main className={styles.contentArea}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/colorpicker" element={<ColorPickerApp />} />
           <Route path="/prompts" element={<PromptLibraryPage />} />
         </Routes>
-      </div>
+      </main>
+
       <div className={styles.footerArea}>
         <Footer />
       </div>
-      <ScrollButton />
     </div>
   );
-};
+});
 
-export const App: React.FC = () => {
+export const App: React.FC = memo(function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <AppContent />
-    </BrowserRouter>
+    </Router>
   );
-};
+});

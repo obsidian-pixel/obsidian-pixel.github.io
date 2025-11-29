@@ -52,7 +52,7 @@ const SidebarComponent: React.FC = memo(function SidebarComponent() {
 
       <div className={styles.socialLinks}>
         <a href="https://x.com/raiduix" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="X (Twitter)">
-          <i aria-hidden="true" className="fi-brands-x-twitter"></i>
+          <i aria-hidden="true" className="fi-brands-twitter"></i>
         </a>
         <a href="https://github.com/obsidian-pixel" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="GitHub">
           <i aria-hidden="true" className="fi-brands-github"></i>

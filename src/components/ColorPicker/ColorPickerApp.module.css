@@ -1,0 +1,135 @@
+/* ChromaForge Pro - Compact Layout - Mobile First */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit));
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 3);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 1.5) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.backBtn {
+  padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 1.5);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateX(-2px);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Main Content - Mobile First */
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.formatDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit));
+  padding: calc(var(--spacing-unit) * 1.5);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+}
+
+.formatRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.formatRow span:first-child {
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+.formatRow span:last-child {
+  font-family: 'Courier New', monospace;
+  color: var(--text-color);
+}
+
+/* Tablet - Side by Side */
+@media (min-width: 768px) {
+  .mainContent {
+    flex-direction: row;
+    gap: calc(var(--spacing-unit) * 3);
+  }
+
+  .leftColumn,
+  .rightColumn {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* Desktop - Optimal Widths */
+@media (min-width: 1024px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 3);
+  }
+
+  .leftColumn {
+    flex: 0 0 400px;
+  }
+
+  .rightColumn {
+    flex: 1;
+  }
+}

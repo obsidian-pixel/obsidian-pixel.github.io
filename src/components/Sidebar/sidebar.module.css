@@ -1,19 +1,18 @@
+/* Sidebar - Fits in Grid Container */
 .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 64px;
-  overflow: hidden;
-  border-right: 1px solid var(--border-subtle);
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s ease;
-  z-index: 1000;
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(150%);
   display: flex;
   flex-direction: column;
+  width: 64px;
+  height: 100%;
+  background: var(--glass-bg);
+  border-right: 1px solid var(--border-subtle);
+  padding: calc(var(--spacing-unit) * 2) 0;
+  gap: calc(var(--spacing-unit) * 2);
+  position: relative; /* Let container handle sticky */
+  transition: width 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
 }
 
 .expanded,
@@ -34,8 +33,8 @@
 }
 
 .pinned {
-  position: fixed;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
 }
 
 .header {
@@ -246,13 +245,60 @@
   gap: calc(var(--spacing-unit) * 2);
 }
 
-@media (max-width: 768px) {
+/* Mobile: Horizontal compact sidebar */
+@media (max-width: 767px) {
   .sidebar {
-    width: 64px;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: calc(var(--spacing-unit)) calc(var(--spacing-unit) * 2);
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .header {
+    padding: 0;
+    min-height: auto;
+    border-bottom: none;
+  }
+
+  .mainNav {
+    flex-direction: row;
+    padding: 0;
+    gap: calc(var(--spacing-unit));
+    flex: 1;
+    justify-content: center;
+  }
+
+  .link {
+    width: auto;
+    height: 40px;
+    padding: calc(var(--spacing-unit));
+  }
+
+  .linkText {
+    display: none !important;
+  }
+
+  .socialLinks {
+    flex-direction: row;
+    border-top: none;
+    border-left: 1px solid var(--border-subtle);
+    padding: 0 0 0 calc(var(--spacing-unit) * 2);
+    gap: calc(var(--spacing-unit));
+  }
+
+  .socialIcon {
+    width: 40px;
+    height: 40px;
   }
 
   .expanded,
   .pinned {
-    width: 260px;
+    width: 100%;
   }
 }

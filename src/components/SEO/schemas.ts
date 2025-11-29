@@ -16,14 +16,12 @@ export const organizationSchema = {
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
   description: 'Advanced AI Prompt Engineering Library and Development Tools',
-  sameAs: [
-    'https://github.com/obsidian-pixel'
-  ],
+  sameAs: ['https://github.com/obsidian-pixel'],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Technical Support',
-    url: 'https://github.com/obsidian-pixel'
-  }
+    url: 'https://github.com/obsidian-pixel',
+  },
 };
 
 /**
@@ -35,9 +33,10 @@ export const websiteSchema = {
   name: 'RAIDUIX Vault',
   alternateName: 'RAIDUIX - AI Prompt Engineering Library',
   url: baseUrl,
-  description: 'Access 500+ premium AI prompts, autonomous agent frameworks, and cognitive architectures for next-generation AI development.',
+  description:
+    'Access 500+ premium AI prompts, autonomous agent frameworks, and cognitive architectures for next-generation AI development.',
   inLanguage: 'en-US',
-  publisher: organizationSchema
+  publisher: organizationSchema,
 };
 
 /**
@@ -52,18 +51,19 @@ export const softwareApplicationSchema = {
   offers: {
     '@type': 'Offer',
     price: '0',
-    priceCurrency: 'USD'
+    priceCurrency: 'USD',
   },
-  description: 'Advanced AI Prompt Engineering Library with 500+ premium prompts, autonomous agent frameworks, and cognitive architectures.',
+  description:
+    'Advanced AI Prompt Engineering Library with 500+ premium prompts, autonomous agent frameworks, and cognitive architectures.',
   softwareVersion: '1.0.0',
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.9',
     ratingCount: '1250',
     bestRating: '5',
-    worstRating: '1'
+    worstRating: '1',
   },
-  author: organizationSchema
+  author: organizationSchema,
 };
 
 /**
@@ -76,8 +76,8 @@ export const createBreadcrumbSchema = (items: Array<{ name: string; url: string 
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: `${baseUrl}${item.url}`
-  }))
+    item: `${baseUrl}${item.url}`,
+  })),
 });
 
 /**
@@ -92,8 +92,8 @@ export const createItemListSchema = (name: string, description: string, items: s
   itemListElement: items.map((item, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    name: item
-  }))
+    name: item,
+  })),
 });
 
 /**
@@ -101,5 +101,34 @@ export const createItemListSchema = (name: string, description: string, items: s
  */
 export const combineSchemas = (...schemas: Array<Record<string, any>>) => ({
   '@context': 'https://schema.org',
-  '@graph': schemas
+  '@graph': schemas,
+});
+
+/**
+ * Create SoftwareApplication schema for apps
+ */
+export const createSoftwareApplicationSchema = (params: {
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory: string;
+  operatingSystem: string;
+  offers: {
+    price: string;
+    priceCurrency: string;
+  };
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: params.name,
+  applicationCategory: params.applicationCategory,
+  operatingSystem: params.operatingSystem,
+  offers: {
+    '@type': 'Offer',
+    price: params.price,
+    priceCurrency: params.priceCurrency,
+  },
+  description: params.description,
+  url: params.url,
+  author: organizationSchema,
 });

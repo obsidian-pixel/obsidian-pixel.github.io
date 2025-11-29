@@ -1,0 +1,31 @@
+/* Mobile-first color wheel styling */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 2);
+  width: 100%;
+}
+
+.canvas {
+  cursor: crosshair;
+  touch-action: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-medium);
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.canvas:active {
+  cursor: grabbing;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .container {
+    padding: calc(var(--spacing-unit) * 3);
+  }
+}

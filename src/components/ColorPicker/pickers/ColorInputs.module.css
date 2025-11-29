@@ -1,0 +1,103 @@
+/* Mobile-first color inputs styling */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 2);
+  width: 100%;
+}
+
+.formatGroup {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit));
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  padding: calc(var(--spacing-unit) * 1.5);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-glow);
+}
+
+.multiInput {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--spacing-unit));
+}
+
+.inputSmall {
+  padding: calc(var(--spacing-unit) * 1.5);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.inputSmall:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Remove spinner arrows */
+.inputSmall::-webkit-inner-spin-button,
+.inputSmall::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputSmall[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.preview {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .formatGroup {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .preview {
+    flex: 0 0 80px;
+    height: 80px;
+  }
+}

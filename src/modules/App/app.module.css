@@ -1,61 +1,69 @@
+/* App Layout - Sidebar + Content Grid - Fixed for Sticky Sidebar */
 .app {
   display: grid;
-  grid-template-columns: 64px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "header header"
-    "sidebar content"
-    "footer footer";
-  gap: calc(var(--spacing-unit) * 3);
   min-height: 100vh;
   width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
+  /* overflow-x: hidden; - Removed to allow sticky positioning to work */
 }
 
+/* Sidebar area - needs proper height for sticky to work */
+/* Sidebar area - Sticky container */
+.sidebarArea {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: auto; /* Width determined by child */
+  z-index: 100;
+  overflow-y: visible; /* Allow menus to pop out if needed */
+}
 
 .headerArea {
-  grid-area: header;
-  position: relative;
-  z-index: 999;
+  grid-column: 2;
+  grid-row: 1;
 }
 
-.sidebarArea {
-  grid-area: sidebar;
-}
-
-.content {
-  grid-area: content;
-  padding-bottom: calc(var(--spacing-unit) * 8);
-  width: 100%;
-  overflow: visible;
+.contentArea {
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+  /* overflow-x: hidden; - Removed to allow sticky positioning */
 }
 
 .footerArea {
-  grid-area: footer;
-  position: relative;
-  z-index: 999;
+  grid-column: 1 / -1;
+  grid-row: 3;
 }
 
-@media (max-width: 768px) {
+/* Mobile: Stack sidebar on top */
+@media (max-width: 767px) {
   .app {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr auto;
-    grid-template-areas:
-      "header"
-      "sidebar"
-      "content"
-      "footer";
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .sidebarArea {
+    grid-column: 1;
+    grid-row: 1;
+    height: auto;
+    overflow-y: visible;
   }
-}
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(350px, 1fr));
+  .headerArea {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .contentArea {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .footerArea {
+    grid-column: 1;
+    grid-row: 4;
   }
 }
