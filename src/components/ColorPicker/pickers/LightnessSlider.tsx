@@ -4,10 +4,8 @@
  * Interactive horizontal slider with live preview
  */
 
-import * as React from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 import styles from './LightnessSlider.module.css';
-
-const { useRef, useCallback, useEffect, useState } = React;
 
 interface LightnessSliderProps {
   hue: number; // 0-360

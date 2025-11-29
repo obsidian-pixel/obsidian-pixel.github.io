@@ -3,7 +3,7 @@
  * Dedicated route for color picker with advanced features
  */
 
-import * as React from 'react';
+import { memo, useEffect, useState, useRef } from 'react';
 import { SEO } from '../SEO/SEO';
 import { createSoftwareApplicationSchema } from '../SEO/schemas';
 import { useNavigate } from 'react-router-dom';
@@ -22,8 +22,6 @@ import { ExportPanel } from './panels/ExportPanel';
 import { addToHistory } from './utils/colorStorage';
 import { generatePalette } from './utils/paletteGenerator';
 import type { ColorState, PaletteType } from './types';
-
-const { memo, useEffect, useState, useRef } = React;
 
 export const ColorPickerAppContent: React.FC = function ColorPickerApp() {
   const navigate = useNavigate();

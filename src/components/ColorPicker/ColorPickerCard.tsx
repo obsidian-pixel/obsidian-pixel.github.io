@@ -4,12 +4,10 @@
  * Mobile-first responsive design
  */
 
-import * as React from 'react';
+import { memo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ColorPickerCard.module.css';
 import { VibrantColorWheel } from './pickers/VibrantColorWheel';
-
-const { memo, useRef } = React;
 
 export const ColorPickerCard: React.FC = memo(function ColorPickerCard() {
   const cardRef = useRef<HTMLDivElement>(null);

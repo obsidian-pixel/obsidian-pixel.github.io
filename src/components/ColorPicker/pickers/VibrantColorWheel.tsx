@@ -4,10 +4,8 @@
  * Mobile-first touch and mouse support
  */
 
-import * as React from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import styles from './VibrantColorWheel.module.css';
-
-const { useRef, useEffect, useCallback, useState } = React;
 
 interface VibrantColorWheelProps {
   hue: number; // 0-360

@@ -3,7 +3,7 @@
  * Manage saved color collections
  */
 
-import * as React from 'react';
+import { memo, useState, useEffect } from 'react';
 import styles from './CollectionsPanel.module.css';
 import type { ColorState } from '../types';
 import {
@@ -12,8 +12,6 @@ import {
   deleteCollection,
   type ColorCollection,
 } from '../utils/colorStorage';
-
-const { memo, useState, useEffect } = React;
 
 interface CollectionsPanelProps {
   currentColors: ColorState[];

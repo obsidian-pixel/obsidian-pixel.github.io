@@ -3,12 +3,10 @@
  * Recent color history from localStorage
  */
 
-import * as React from 'react';
+import { memo, useState, useEffect } from 'react';
 import styles from './HistoryPanel.module.css';
 import type { ColorState } from '../types';
 import { getHistory, clearHistory } from '../utils/colorStorage';
-
-const { memo, useState, useEffect } = React;
 
 interface HistoryPanelProps {
   onColorSelect: (color: ColorState) => void;

@@ -3,12 +3,10 @@
  * Upload images and extract color palettes
  */
 
-import * as React from 'react';
+import { memo, useState } from 'react';
 import styles from './ImageExtractorPanel.module.css';
 import type { ColorState } from '../types';
 import { extractColorsFromImage } from '../utils/imageColorExtractor';
-
-const { memo, useState } = React;
 
 interface ImageExtractorPanelProps {
   onColorsExtracted: (colors: ColorState[]) => void;

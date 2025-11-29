@@ -1,8 +1,6 @@
-import * as React from 'react';
+import { memo, useState } from 'react';
 import styles from './ExportPanel.module.css';
 import type { ColorState } from '../types';
-
-const { memo, useState } = React;
 
 interface ExportPanelProps {
   colors: ColorState[];

@@ -3,11 +3,9 @@
  * Shows generated color harmonies
  */
 
-import * as React from 'react';
+import { memo, useState } from 'react';
 import styles from './PalettePanel.module.css';
 import type { ColorState, PaletteType } from '../types';
-
-const { memo, useState } = React;
 
 interface PalettePanelProps {
   colors: ColorState[];

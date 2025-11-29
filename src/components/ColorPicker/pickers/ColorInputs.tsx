@@ -3,11 +3,9 @@
  * Multi-format input with validation
  */
 
-import * as React from 'react';
+import { memo, useCallback } from 'react';
 import styles from './ColorInputs.module.css';
 import type { ColorState } from '../types';
-
-const { memo, useCallback } = React;
 
 interface ColorInputsProps {
   color: ColorState;

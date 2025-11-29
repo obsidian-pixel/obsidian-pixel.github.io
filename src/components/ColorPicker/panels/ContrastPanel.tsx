@@ -3,12 +3,10 @@
  * WCAG contrast ratio calculator
  */
 
-import * as React from 'react';
+import { memo } from 'react';
 import styles from './ContrastPanel.module.css';
 import type { ColorState } from '../types';
 import { getContrastRatio, checkWCAGCompliance } from '../utils/contrastChecker';
-
-const { memo } = React;
 
 interface ContrastPanelProps {
   foreground: ColorState;

@@ -4,11 +4,9 @@
  * Includes checkerboard pattern for transparency visualization
  */
 
-import * as React from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 import styles from './AlphaSlider.module.css';
 import type { ColorState } from '../types';
-
-const { useRef, useCallback, useEffect, useState } = React;
 
 interface AlphaSliderProps {
   color: ColorState;
