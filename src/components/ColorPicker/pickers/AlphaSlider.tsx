@@ -29,6 +29,9 @@ export const AlphaSlider: React.FC<AlphaSliderProps> = ({ color, alpha, onChange
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Safety check for color.rgb
+    if (!color || !color.rgb) return;
+
     const width = canvas.width;
     const height = canvas.height;
     const checkerSize = 8;
@@ -45,8 +48,11 @@ export const AlphaSlider: React.FC<AlphaSliderProps> = ({ color, alpha, onChange
     // Draw alpha gradient overlay
     const gradient = ctx.createLinearGradient(0, 0, width, 0);
     const rgb = color.rgb;
-    gradient.addColorStop(0, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0)`);
-    gradient.addColorStop(1, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)`);
+    const r = rgb.r ?? 0;
+    const g = rgb.g ?? 0;
+    const b = rgb.b ?? 0;
+    gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
+    gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 1)`);
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);

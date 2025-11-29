@@ -34,6 +34,10 @@ export const LightnessSlider: React.FC<LightnessSliderProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Safety checks for inputs
+    const safeHue = typeof hue === 'number' && !isNaN(hue) ? hue : 0;
+    const safeSaturation = typeof saturation === 'number' && !isNaN(saturation) ? saturation : 0;
+
     const width = canvas.width;
     const height = canvas.height;
 
@@ -42,8 +46,8 @@ export const LightnessSlider: React.FC<LightnessSliderProps> = ({
       const v = (x / width) * 100; // 0-100
 
       // Convert HSV to RGB
-      const h = hue / 360;
-      const s = saturation / 100;
+      const h = safeHue / 360;
+      const s = safeSaturation / 100;
       const value = v / 100;
 
       const i = Math.floor(h * 6);
