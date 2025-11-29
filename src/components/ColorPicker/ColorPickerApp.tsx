@@ -23,7 +23,7 @@ import type { ColorState, PaletteType } from './types';
 
 const { memo, useEffect, useState, useRef } = React;
 
-export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
+export const ColorPickerAppContent: React.FC = function ColorPickerApp() {
   const navigate = useNavigate();
   const { color, updateFromHex, updateFromRgb, updateFromHsl, updateFromHsv, setColor } =
     useColorState();
@@ -31,6 +31,7 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
   const [currentPalette, setCurrentPalette] = useState<ColorState[]>([color]);
   const [paletteType, setPaletteType] = useState<PaletteType>('analogous');
   const [bgColor, setBgColor] = useState<ColorState>(color);
+  const [lockedColors, setLockedColors] = useState<boolean[]>([]);
 
   // Ref to track if we are currently loading a collection to prevent auto-regeneration
   const isLoadingCollection = useRef(false);
@@ -50,8 +51,26 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
       return;
     }
     const newPalette = generatePalette(color, paletteType, 5);
-    setCurrentPalette(newPalette);
-  }, [color, paletteType]);
+
+    setCurrentPalette((prev) => {
+      if (lockedColors.some((locked) => locked)) {
+        return newPalette.map((newColor, index) => {
+          if (lockedColors[index] && prev[index]) {
+            return prev[index];
+          }
+          return newColor;
+        });
+      }
+      return newPalette;
+    });
+  }, [color, paletteType, lockedColors]); // Adding lockedColors to deps to ensure closure freshness, though logic mainly relies on color change triggering it.
+  // Actually, if I add lockedColors to deps, toggling lock will trigger this.
+  // If I toggle lock, I want the palette to stay same.
+  // If I toggle lock, `generatePalette` runs with SAME color/type. Returns SAME palette.
+  // Then we merge.
+  // If I lock index 0. `prev[0]` is current color. `newPalette[0]` is current color. No change.
+  // If I unlock index 0. `prev[0]` is current color. `newPalette[0]` is current color. No change.
+  // So adding `lockedColors` to deps is safe and ensures correctness.
 
   const softwareSchema = createSoftwareApplicationSchema({
     name: 'ChromaForge Pro',
@@ -69,6 +88,7 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
   const handleLoadCollection = (colors: ColorState[]) => {
     if (colors.length > 0) {
       isLoadingCollection.current = true;
+      setLockedColors(new Array(colors.length).fill(false));
       setColor(colors[0]);
       setCurrentPalette(colors);
     }
@@ -77,9 +97,20 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
   const handleImageColors = (colors: ColorState[]) => {
     if (colors.length > 0) {
       isLoadingCollection.current = true;
+      setLockedColors(new Array(colors.length).fill(false));
       setColor(colors[0]);
       setCurrentPalette(colors);
     }
+  };
+
+  const handleToggleLock = (index: number) => {
+    setLockedColors((prev) => {
+      const newLocked = [...prev];
+      // Ensure array is long enough
+      while (newLocked.length < 5) newLocked.push(false);
+      newLocked[index] = !newLocked[index];
+      return newLocked;
+    });
   };
 
   return (
@@ -153,13 +184,15 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
           </div>
 
           <div className={styles.rightColumn}>
-            <ImageExtractorPanel onColorsExtracted={handleImageColors} />
+            <ImageExtractorPanel onColorsExtracted={handleImageColors} onColorSelect={setColor} />
 
             <PalettePanel
               colors={currentPalette}
               selectedType={paletteType}
               onTypeChange={setPaletteType}
               onColorSelect={setColor}
+              lockedColors={lockedColors}
+              onToggleLock={handleToggleLock}
             />
 
             <ExportPanel colors={currentPalette} />
@@ -173,6 +206,8 @@ export const ColorPickerApp: React.FC = memo(function ColorPickerApp() {
       </div>
     </div>
   );
-});
+};
+
+export const ColorPickerApp = memo(ColorPickerAppContent);
 
 ColorPickerApp.displayName = 'ColorPickerApp';

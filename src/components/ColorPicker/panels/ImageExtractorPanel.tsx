@@ -12,10 +12,11 @@ const { memo, useState } = React;
 
 interface ImageExtractorPanelProps {
   onColorsExtracted: (colors: ColorState[]) => void;
+  onColorSelect?: (color: ColorState) => void;
 }
 
 export const ImageExtractorPanel: React.FC<ImageExtractorPanelProps> = memo(
-  ({ onColorsExtracted }) => {
+  ({ onColorsExtracted, onColorSelect }) => {
     const [isExtracting, setIsExtracting] = useState(false);
     const [extractedColors, setExtractedColors] = useState<ColorState[]>([]);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -98,6 +99,14 @@ export const ImageExtractorPanel: React.FC<ImageExtractorPanelProps> = memo(
                   className={styles.swatch}
                   style={{ backgroundColor: color.hex }}
                   title={color.hex}
+                  onClick={() => onColorSelect?.(color)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      onColorSelect?.(color);
+                    }
+                  }}
                 >
                   <span className={styles.hexLabel}>{color.hex}</span>
                 </div>

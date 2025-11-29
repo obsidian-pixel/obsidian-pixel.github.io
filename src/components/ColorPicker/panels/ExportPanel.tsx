@@ -1,8 +1,3 @@
-/**
- * ChromaForge Pro - Export Panel
- * Export colors in multiple formats (CSS, Tailwind, JSON, etc.)
- */
-
 import * as React from 'react';
 import styles from './ExportPanel.module.css';
 import type { ColorState } from '../types';

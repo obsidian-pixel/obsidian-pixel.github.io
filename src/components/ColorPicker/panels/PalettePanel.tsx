@@ -14,6 +14,8 @@ interface PalettePanelProps {
   selectedType: PaletteType;
   onTypeChange: (type: PaletteType) => void;
   onColorSelect: (color: ColorState) => void;
+  lockedColors?: boolean[];
+  onToggleLock?: (index: number) => void;
 }
 
 const PALETTE_TYPES: { value: PaletteType; label: string }[] = [
@@ -29,7 +31,7 @@ const PALETTE_TYPES: { value: PaletteType; label: string }[] = [
 ];
 
 export const PalettePanel: React.FC<PalettePanelProps> = memo(
-  ({ colors, selectedType, onTypeChange, onColorSelect }) => {
+  ({ colors, selectedType, onTypeChange, onColorSelect, lockedColors = [], onToggleLock }) => {
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
     const handleCopy = (color: ColorState, index: number) => {
@@ -75,17 +77,32 @@ export const PalettePanel: React.FC<PalettePanelProps> = memo(
             >
               <div className={styles.swatchOverlay}>
                 <span className={styles.hexLabel}>{color.hex}</span>
-                <button
-                  type="button"
-                  className={styles.copyBtn}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopy(color, index);
-                  }}
-                  aria-label="Copy color"
-                >
-                  {copiedIndex === index ? '✓' : '⎘'}
-                </button>
+                <div className={styles.actions}>
+                  <button
+                    type="button"
+                    className={`${styles.iconBtn} ${lockedColors[index] ? styles.locked : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onToggleLock?.(index);
+                    }}
+                    aria-label={lockedColors[index] ? 'Unlock color' : 'Lock color'}
+                    title={lockedColors[index] ? 'Unlock color' : 'Lock color'}
+                  >
+                    {lockedColors[index] ? '🔒' : '🔓'}
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.iconBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopy(color, index);
+                    }}
+                    aria-label="Copy color"
+                    title="Copy hex code"
+                  >
+                    {copiedIndex === index ? '✓' : '⎘'}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

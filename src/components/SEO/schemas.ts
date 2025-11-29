@@ -125,8 +125,8 @@ export const createSoftwareApplicationSchema = (params: {
   operatingSystem: params.operatingSystem,
   offers: {
     '@type': 'Offer',
-    price: params.price,
-    priceCurrency: params.priceCurrency,
+    price: params.offers.price,
+    priceCurrency: params.offers.priceCurrency,
   },
   description: params.description,
   url: params.url,

@@ -49,8 +49,15 @@
 
 .formats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: calc(var(--spacing-unit) * 0.75);
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .formats {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .formatBtn {

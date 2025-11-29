@@ -1,0 +1,88 @@
+
+> obsidian-pixel-vault@1.0.0 test
+> jest ColorPickerApp
+
+FAIL src/components/ColorPicker/ColorPickerApp.test.tsx
+  ColorPickerApp
+    ΓêÜ renders correctly (39 ms)
+    ΓêÜ updates main color when image color is selected (12 ms)
+    ΓêÜ updates main color when palette color is selected (7 ms)
+    ΓêÜ toggles lock state when lock button is clicked (12 ms)
+    ├ù preserves locked colors when palette regenerates (9 ms)
+
+  ΓùÅ ColorPickerApp ΓÇ║ preserves locked colors when palette regenerates
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      #111111
+    Received:
+      #FF0000Unlocked
+
+      167 |     // Check if index 0 updated (it was not locked)
+      168 |     const swatch0 = screen.getByTestId('palette-swatch-0');
+    > 169 |     expect(swatch0).toHaveTextContent('#111111');
+          |                     ^
+      170 |   });
+      171 | });
+      172 |
+
+      at Object.<anonymous> (src/components/ColorPicker/ColorPickerApp.test.tsx:169:21)
+
+--------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------------------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                                                   
+--------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------------------------------
+All files                 |    8.54 |     1.28 |    4.83 |    8.38 |                                                                                                                     
+ Card                     |       0 |        0 |       0 |       0 |                                                                                                                     
+  Card.tsx                |       0 |        0 |       0 |       0 | 2-120                                                                                                               
+ ColorPicker              |   62.65 |       40 |   52.94 |   61.25 |                                                                                                                     
+  ColorPickerApp.tsx      |   78.78 |    57.14 |   69.23 |   77.77 | 42,50-51,89-93,98-102,139                                                                                           
+  ColorPickerCard.tsx     |       0 |        0 |       0 |       0 | 7-65                                                                                                                
+ ColorPicker/hooks        |   13.33 |        0 |       0 |   13.33 |                                                                                                                     
+  useColorState.ts        |   13.33 |        0 |       0 |   13.33 | 22-94                                                                                                               
+ ColorPicker/panels       |       0 |        0 |       0 |       0 |                                                                                                                     
+  CollectionsPanel.tsx    |       0 |        0 |       0 |       0 | 6-143                                                                                                               
+  ContrastPanel.tsx       |       0 |        0 |       0 |       0 | 6-73                                                                                                                
+  ExportPanel.tsx         |       0 |        0 |       0 |       0 | 6-148                                                                                                               
+  HistoryPanel.tsx        |       0 |        0 |       0 |       0 | 6-87                                                                                                                
+  ImageExtractorPanel.tsx |       0 |        0 |       0 |       0 | 6-122                                                                                                               
+  PalettePanel.tsx        |       0 |        0 |       0 |       0 | 6-115                                                                                                               
+ ColorPicker/pickers      |       0 |        0 |       0 |       0 |                                                                                                                     
+  ColorInputs.tsx         |       0 |        0 |       0 |       0 | 6-135                                                                                                               
+  ColorWheel.tsx          |       0 |        0 |       0 |       0 | 7-205                                                                                                               
+ ColorPicker/utils        |    6.27 |        0 |       0 |     6.6 |                                                                                                                     
+  colorConversions.ts     |    6.02 |        0 |       0 |    6.17 | 13,21-47,54-62,69-89,96-124,136-162,174-200,212-261,273-277,289-310,322-336,348-357,369-397,409-436,449-476,488-513 
+  colorStorage.ts         |   18.18 |        0 |       0 |    19.6 | 24-29,37-54,61-75,84-89,97-115,123-128,136-139                                                                      
+  contrastChecker.ts      |       0 |        0 |       0 |       0 | 12-43                                                                                                               
+  imageColorExtractor.ts  |       0 |        0 |       0 |       0 | 7-110                                                                                                               
+  paletteGenerator.ts     |    3.27 |        0 |       0 |    3.57 | 25-211                                                                                                              
+ FAQ                      |       0 |        0 |       0 |       0 |                                                                                                                     
+  FAQ.tsx                 |       0 |        0 |       0 |       0 | 1-52                                                                                                                
+ Footer                   |       0 |      100 |       0 |       0 |                                                                                                                     
+  Footer.tsx              |       0 |      100 |       0 |       0 | 2-73                                                                                                                
+ Header                   |       0 |      100 |       0 |       0 |                                                                                                                     
+  Header.tsx              |       0 |      100 |       0 |       0 | 2-30                                                                                                                
+ Modal                    |       0 |        0 |       0 |       0 |                                                                                                                     
+  Modal.tsx               |       0 |        0 |       0 |       0 | 2-44                                                                                                                
+ PromptCard               |       0 |        0 |       0 |       0 |                                                                                                                     
+  PromptCard.tsx          |       0 |        0 |       0 |       0 | 2-52                                                                                                                
+ SEO                      |   16.25 |        0 |    7.69 |   13.04 |                                                                                                                     
+  SEO.tsx                 |       0 |        0 |       0 |       0 | 1-101                                                                                                               
+  faq.schema.ts           |       0 |      100 |       0 |       0 | 14-77                                                                                                               
+  schemas.ts              |   72.22 |      100 |   16.66 |   81.81 | 75,92                                                                                                               
+ ScrollButton             |       0 |        0 |       0 |       0 |                                                                                                                     
+  Scroll-Button.tsx       |       0 |        0 |       0 |       0 | 2-62                                                                                                                
+ SearchBar                |       0 |        0 |       0 |       0 |                                                                                                                     
+  Search-Bar.tsx          |       0 |        0 |       0 |       0 | 2-44                                                                                                                
+ Sidebar                  |       0 |        0 |       0 |       0 |                                                                                                                     
+  Sidebar.tsx             |       0 |        0 |       0 |       0 | 2-66                                                                                                                
+--------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------------------------------
+Jest: "global" coverage threshold for statements (90%) not met: 8.54%
+Jest: "global" coverage threshold for branches (90%) not met: 1.28%
+Jest: "global" coverage threshold for lines (90%) not met: 8.38%
+Jest: "global" coverage threshold for functions (90%) not met: 4.83%
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 4 passed, 5 total
+Snapshots:   0 total
+Time:        9.873 s
+Ran all test suites matching /ColorPickerApp/i.

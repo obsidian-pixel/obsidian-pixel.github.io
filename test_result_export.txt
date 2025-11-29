@@ -1,0 +1,125 @@
+
+> obsidian-pixel-vault@1.0.0 test
+> jest ExportPanel
+
+FAIL src/components/ColorPicker/panels/ExportPanel.test.tsx
+  ΓùÅ Test suite failed to run
+
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:37:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    37     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:44:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    44     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:51:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    51     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:62:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    62     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:72:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    72     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+    src/components/ColorPicker/panels/ExportPanel.test.tsx:81:25 - error TS2322: Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }[]' is not assignable to type 'ColorState[]'.
+      Type '{ hex: string; rgb: { r: number; g: number; b: number; }; hsl: { h: number; s: number; l: number; }; hsv: { h: number; s: number; v: number; }; cmyk: { c: number; m: number; y: number; k: number; }; oklch: { l: number; c: number; h: number; }; }' is missing the following properties from type 'ColorState': hwb, lab
+
+    81     render(<ExportPanel colors={mockColors} />);
+                               ~~~~~~
+
+      src/components/ColorPicker/panels/ExportPanel.tsx:8:3
+        8   colors: ColorState[];
+            ~~~~~~
+        The expected type comes from property 'colors' which is declared here on type 'IntrinsicAttributes & ExportPanelProps'
+
+--------------------------|---------|----------|---------|---------|-------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+All files                 |       0 |        0 |       0 |       0 |                   
+ Card                     |       0 |        0 |       0 |       0 |                   
+  Card.tsx                |       0 |        0 |       0 |       0 | 2-120             
+ ColorPicker              |       0 |        0 |       0 |       0 |                   
+  ColorPickerApp.tsx      |       0 |        0 |       0 |       0 | 6-213             
+  ColorPickerCard.tsx     |       0 |        0 |       0 |       0 | 7-65              
+ ColorPicker/hooks        |       0 |        0 |       0 |       0 |                   
+  useColorState.ts        |       0 |        0 |       0 |       0 | 6-94              
+ ColorPicker/panels       |       0 |        0 |       0 |       0 |                   
+  CollectionsPanel.tsx    |       0 |        0 |       0 |       0 | 6-143             
+  ContrastPanel.tsx       |       0 |        0 |       0 |       0 | 6-73              
+  ExportPanel.tsx         |       0 |        0 |       0 |       0 | 1-143             
+  HistoryPanel.tsx        |       0 |        0 |       0 |       0 | 6-87              
+  ImageExtractorPanel.tsx |       0 |        0 |       0 |       0 | 6-122             
+  PalettePanel.tsx        |       0 |        0 |       0 |       0 | 6-115             
+ ColorPicker/pickers      |       0 |        0 |       0 |       0 |                   
+  ColorInputs.tsx         |       0 |        0 |       0 |       0 | 6-135             
+  ColorWheel.tsx          |       0 |        0 |       0 |       0 | 7-205             
+ ColorPicker/utils        |       0 |        0 |       0 |       0 |                   
+  colorConversions.ts     |       0 |        0 |       0 |       0 | 13-513            
+  colorStorage.ts         |       0 |        0 |       0 |       0 | 16-139            
+  contrastChecker.ts      |       0 |        0 |       0 |       0 | 12-43             
+  imageColorExtractor.ts  |       0 |        0 |       0 |       0 | 7-110             
+  paletteGenerator.ts     |       0 |        0 |       0 |       0 | 7-211             
+ FAQ                      |       0 |        0 |       0 |       0 |                   
+  FAQ.tsx                 |       0 |        0 |       0 |       0 | 1-52              
+ Footer                   |       0 |      100 |       0 |       0 |                   
+  Footer.tsx              |       0 |      100 |       0 |       0 | 2-73              
+ Header                   |       0 |      100 |       0 |       0 |                   
+  Header.tsx              |       0 |      100 |       0 |       0 | 2-30              
+ Modal                    |       0 |        0 |       0 |       0 |                   
+  Modal.tsx               |       0 |        0 |       0 |       0 | 2-44              
+ PromptCard               |       0 |        0 |       0 |       0 |                   
+  PromptCard.tsx          |       0 |        0 |       0 |       0 | 2-52              
+ SEO                      |       0 |        0 |       0 |       0 |                   
+  SEO.tsx                 |       0 |        0 |       0 |       0 | 1-101             
+  faq.schema.ts           |       0 |      100 |       0 |       0 | 14-77             
+  schemas.ts              |       0 |      100 |       0 |       0 | 6-120             
+ ScrollButton             |       0 |        0 |       0 |       0 |                   
+  Scroll-Button.tsx       |       0 |        0 |       0 |       0 | 2-62              
+ SearchBar                |       0 |        0 |       0 |       0 |                   
+  Search-Bar.tsx          |       0 |        0 |       0 |       0 | 2-44              
+ Sidebar                  |       0 |        0 |       0 |       0 |                   
+  Sidebar.tsx             |       0 |        0 |       0 |       0 | 2-66              
+--------------------------|---------|----------|---------|---------|-------------------
+Jest: "global" coverage threshold for statements (90%) not met: 0%
+Jest: "global" coverage threshold for branches (90%) not met: 0%
+Jest: "global" coverage threshold for lines (90%) not met: 0%
+Jest: "global" coverage threshold for functions (90%) not met: 0%
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        12.981 s
+Ran all test suites matching /ExportPanel/i.

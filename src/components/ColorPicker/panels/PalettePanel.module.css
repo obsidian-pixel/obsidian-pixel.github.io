@@ -94,7 +94,14 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.copyBtn {
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -111,10 +118,21 @@
   -webkit-backdrop-filter: blur(10px);
 }
 
-.copyBtn:hover {
+.iconBtn:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.1);
+}
+
+.locked {
+  background: rgba(255, 215, 0, 0.3);
+  border-color: rgba(255, 215, 0, 0.6);
+  color: #ffd700;
+}
+
+.locked:hover {
+  background: rgba(255, 215, 0, 0.4);
+  border-color: rgba(255, 215, 0, 0.8);
 }
 
 /* Tablet and up */
