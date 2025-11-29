@@ -9,7 +9,9 @@ import { createSoftwareApplicationSchema } from '../SEO/schemas';
 import { useNavigate } from 'react-router-dom';
 import styles from './ColorPickerApp.module.css';
 import { useColorState } from './hooks/useColorState';
-import { ColorWheel } from './pickers/ColorWheel';
+import { VibrantColorWheel } from './pickers/VibrantColorWheel';
+import { LightnessSlider } from './pickers/LightnessSlider';
+import { AlphaSlider } from './pickers/AlphaSlider';
 import { ColorInputs } from './pickers/ColorInputs';
 import { PalettePanel } from './panels/PalettePanel';
 import { CollectionsPanel } from './panels/CollectionsPanel';
@@ -148,7 +150,25 @@ export const ColorPickerAppContent: React.FC = function ColorPickerApp() {
 
         <main className={styles.mainContent}>
           <div className={styles.leftColumn}>
-            <ColorWheel hsv={color.hsv} onChange={updateFromHsv} size={220} />
+            <VibrantColorWheel
+              hue={color.hsv.h}
+              saturation={color.hsv.s}
+              onChange={(h, s) => updateFromHsv({ ...color.hsv, h, s })}
+              size={220}
+            />
+
+            <LightnessSlider
+              hue={color.hsv.h}
+              saturation={color.hsv.s}
+              lightness={color.hsv.v}
+              onChange={(v) => updateFromHsv({ ...color.hsv, v })}
+            />
+
+            <AlphaSlider
+              color={color}
+              alpha={(color.hsv.a || 1) * 100}
+              onChange={(a) => updateFromHsv({ ...color.hsv, a: a / 100 })}
+            />
 
             <ColorInputs
               color={color}

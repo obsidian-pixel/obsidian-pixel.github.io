@@ -1,4 +1,4 @@
-/* Mobile-first color wheel styling */
+/* VibrantColorWheel - Mobile-first styling */
 
 .container {
   display: flex;
@@ -17,10 +17,16 @@
   height: auto;
   user-select: none;
   -webkit-user-select: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.canvas:hover {
+  box-shadow: var(--shadow-large);
 }
 
 .canvas:active {
   cursor: grabbing;
+  box-shadow: var(--shadow-xlarge);
 }
 
 /* Tablet and up */

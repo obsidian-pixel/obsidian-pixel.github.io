@@ -7,7 +7,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ColorPickerCard.module.css';
-import { ColorWheel } from './pickers/ColorWheel';
+import { VibrantColorWheel } from './pickers/VibrantColorWheel';
 
 const { memo, useRef } = React;
 
@@ -45,7 +45,12 @@ export const ColorPickerCard: React.FC = memo(function ColorPickerCard() {
     >
       <div className={styles.preview}>
         <div className={styles.previewWheel}>
-          <ColorWheel hsv={defaultColor} onChange={() => {}} size={200} />
+          <VibrantColorWheel
+            hue={defaultColor.h}
+            saturation={defaultColor.s}
+            onChange={() => {}}
+            size={200}
+          />
         </div>
         <div className={styles.previewContent}>
           <h3 className={styles.title}>ChromaForge Pro</h3>

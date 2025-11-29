@@ -15,8 +15,14 @@ jest.mock('./utils/paletteGenerator');
 jest.mock('./utils/colorStorage');
 
 // Mock child components
-jest.mock('./pickers/ColorWheel', () => ({
-  ColorWheel: () => <div data-testid="color-wheel">ColorWheel</div>,
+jest.mock('./pickers/VibrantColorWheel', () => ({
+  VibrantColorWheel: () => <div data-testid="vibrant-color-wheel">VibrantColorWheel</div>,
+}));
+jest.mock('./pickers/LightnessSlider', () => ({
+  LightnessSlider: () => <div data-testid="lightness-slider">LightnessSlider</div>,
+}));
+jest.mock('./pickers/AlphaSlider', () => ({
+  AlphaSlider: () => <div data-testid="alpha-slider">AlphaSlider</div>,
 }));
 jest.mock('./pickers/ColorInputs', () => ({
   ColorInputs: () => <div data-testid="color-inputs">ColorInputs</div>,

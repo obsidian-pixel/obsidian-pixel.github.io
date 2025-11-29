@@ -121,5 +121,5 @@ Jest: "global" coverage threshold for functions (90%) not met: 0%
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        12.981 s
+Time:        10.281 s
 Ran all test suites matching /ExportPanel/i.

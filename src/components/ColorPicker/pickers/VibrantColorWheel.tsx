@@ -1,26 +1,31 @@
 /**
- * ChromaForge Pro - Color Wheel Picker
- * Interactive HSV color wheel with canvas rendering
+ * ChromaForge Pro - Vibrant Color Wheel Picker
+ * Pure hue and saturation selection with maximum vibrancy
  * Mobile-first touch and mouse support
  */
 
 import * as React from 'react';
-import styles from './ColorWheel.module.css';
-import type { HSV } from '../types';
+import styles from './VibrantColorWheel.module.css';
 
 const { useRef, useEffect, useCallback, useState } = React;
 
-interface ColorWheelProps {
-  hsv: HSV;
-  onChange: (hsv: HSV) => void;
+interface VibrantColorWheelProps {
+  hue: number; // 0-360
+  saturation: number; // 0-100
+  onChange: (hue: number, saturation: number) => void;
   size?: number;
 }
 
-export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 200 }) => {
+export const VibrantColorWheel: React.FC<VibrantColorWheelProps> = ({
+  hue,
+  saturation,
+  onChange,
+  size = 200,
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Draw color wheel
+  // Draw vibrant color wheel (hue + saturation only, fixed brightness)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -35,7 +40,7 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 20
     // Clear canvas
     ctx.clearRect(0, 0, size, size);
 
-    // Draw saturation-value square
+    // Draw vibrant color wheel
     for (let y = 0; y < radius * 2; y++) {
       for (let x = 0; x < radius * 2; x++) {
         const dx = x - radius;
@@ -43,13 +48,13 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 20
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance <= radius) {
-          const saturation = distance / radius;
+          const sat = distance / radius;
           const angle = ((Math.atan2(dy, dx) * 180) / Math.PI + 360) % 360;
 
-          // Convert HSV to RGB for rendering
+          // Convert HSV to RGB with V=1 (maximum brightness)
           const h = angle / 360;
-          const s = saturation;
-          const v = 1 - y / (radius * 2);
+          const s = sat;
+          const v = 1; // Always maximum brightness for vibrancy
 
           const i = Math.floor(h * 6);
           const f = h * 6 - i;
@@ -95,30 +100,34 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 20
               b = 0;
           }
 
-          ctx.fillStyle = `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+          ctx.fillStyle = `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(
+            b * 255
+          )})`;
           ctx.fillRect(centerX - radius + x, centerY - radius + y, 1, 1);
         }
       }
     }
 
-    // Draw cursor at current color position
-    const angle = (hsv.h * Math.PI) / 180;
-    const dist = (hsv.s / 100) * radius;
+    // Draw cursor at current hue/saturation position
+    const angle = (hue * Math.PI) / 180;
+    const dist = (saturation / 100) * radius;
     const cursorX = centerX + Math.cos(angle) * dist;
     const cursorY = centerY + Math.sin(angle) * dist;
 
-    ctx.strokeStyle = hsv.v > 50 ? '#000' : '#fff';
-    ctx.lineWidth = 2;
+    // Outer ring
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.arc(cursorX, cursorY, 8, 0, Math.PI * 2);
     ctx.stroke();
 
-    ctx.strokeStyle = hsv.v > 50 ? '#fff' : '#000';
-    ctx.lineWidth = 1;
+    // Inner ring
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.arc(cursorX, cursorY, 7, 0, Math.PI * 2);
+    ctx.arc(cursorX, cursorY, 6, 0, Math.PI * 2);
     ctx.stroke();
-  }, [hsv, size]);
+  }, [hue, saturation, size]);
 
   const handleColorChange = useCallback(
     (clientX: number, clientY: number) => {
@@ -137,20 +146,14 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 20
       const dy = y - centerY;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance > radius) return;
-
-      const saturation = Math.min((distance / radius) * 100, 100);
+      // Clamp to circle bounds
+      const clampedDistance = Math.min(distance, radius);
+      const newSaturation = Math.min((clampedDistance / radius) * 100, 100);
       const angle = ((Math.atan2(dy, dx) * 180) / Math.PI + 360) % 360;
-      const value = 100 - (y / size) * 100;
 
-      onChange({
-        h: Math.round(angle),
-        s: Math.round(saturation),
-        v: Math.round(Math.max(0, Math.min(100, value))),
-        a: hsv.a,
-      });
+      onChange(Math.round(angle), Math.round(newSaturation));
     },
-    [onChange, size, hsv.a]
+    [onChange, size]
   );
 
   const handleMouseDown = useCallback(
@@ -216,11 +219,12 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({ hsv, onChange, size = 20
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        aria-label="Color wheel picker"
+        aria-label="Vibrant color wheel picker"
         role="slider"
         aria-valuemin={0}
         aria-valuemax={360}
-        aria-valuenow={hsv.h}
+        aria-valuenow={hue}
+        aria-valuetext={`Hue: ${hue}°, Saturation: ${saturation}%`}
       />
     </div>
   );
