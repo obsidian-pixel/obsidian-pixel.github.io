@@ -8,6 +8,7 @@ import { Header } from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { Footer } from '../../components/Footer/Footer';
 import { ColorPickerApp } from '../../components/ColorPicker/ColorPickerApp';
+import { ScrollbarBuilderPage } from '../../components/ScrollbarBuilder/ScrollbarBuilderPage';
 import styles from './app.module.css';
 
 const { memo } = React;
@@ -33,6 +34,7 @@ const AppContent: React.FC = memo(function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/colorpicker" element={<ColorPickerApp />} />
+          <Route path="/projects/scrollbar-builder" element={<ScrollbarBuilderPage />} />
           <Route path="/prompts" element={<PromptLibraryPage />} />
         </Routes>
       </main>

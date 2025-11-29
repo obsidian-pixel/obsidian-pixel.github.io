@@ -3,6 +3,7 @@ import * as React from 'react';
 import { SEO } from '../components/SEO/SEO';
 import { createBreadcrumbSchema } from '../components/SEO/schemas';
 import { ColorPickerCard } from '../components/ColorPicker/ColorPickerCard';
+import { ScrollbarBuilderCard } from '../components/ScrollbarBuilder/ScrollbarBuilderCard';
 import styles from './page.module.css';
 
 export const ProjectsPage: React.FC = () => {
@@ -35,6 +36,7 @@ export const ProjectsPage: React.FC = () => {
         <p className={styles.pageDescription}>Native applications built into RAIDUIX Vault</p>
         <div className={styles.grid}>
           <ColorPickerCard />
+          <ScrollbarBuilderCard />
         </div>
       </section>
     </div>

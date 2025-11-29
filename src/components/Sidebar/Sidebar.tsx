@@ -10,8 +10,8 @@ const SidebarComponent: React.FC = memo(function SidebarComponent() {
   const toggleMenu = useCallback(() => {
     setOpen((prev: boolean) => !prev);
   }, []);
-  const onEnter = useCallback(() => { }, []);
-  const onLeave = useCallback(() => { }, []);
+  const onEnter = useCallback(() => {}, []);
+  const onLeave = useCallback(() => {}, []);
 
   return (
     <nav
@@ -51,10 +51,22 @@ const SidebarComponent: React.FC = memo(function SidebarComponent() {
       </div>
 
       <div className={styles.socialLinks}>
-        <a href="https://x.com/raiduix" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+        <a
+          href="https://x.com/raiduix"
+          className={styles.socialIcon}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="X (Twitter)"
+        >
           <i aria-hidden="true" className="fi-brands-twitter"></i>
         </a>
-        <a href="https://github.com/obsidian-pixel" className={styles.socialIcon} target="_blank" rel="noopener noreferrer" title="GitHub">
+        <a
+          href="https://github.com/obsidian-pixel"
+          className={styles.socialIcon}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub"
+        >
           <i aria-hidden="true" className="fi-brands-github"></i>
         </a>
       </div>
